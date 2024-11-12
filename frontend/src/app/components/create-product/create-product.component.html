@@ -1,0 +1,52 @@
+<h2>Add Product</h2>
+<mat-card class="create-product-section">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="productForm.get('name')?.hasError('minlength')">
+        Name must be at least 3 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+      <mat-error *ngIf="productForm.get('description')?.hasError('minlength')">
+        Description must be at least 10 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" type="number">
+      <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+        Price must be greater than 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Stock Quantity</mat-label>
+      <input matInput formControlName="stockQuantity" type="number">
+      <mat-error *ngIf="productForm.get('stockQuantity')?.hasError('required')">
+        Stock Quantity is required
+      </mat-error>
+      <mat-error *ngIf="productForm.get('stockQuantity')?.hasError('min')">
+        Stock Quantity must be at least 1
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+      Submit
+    </button>
+  </form>
+</mat-card>

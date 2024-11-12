@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-title>Login!</mat-card-title>
+  <form (ngSubmit)="onSubmit()" class="example-form" [formGroup]="loginForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input autocomplete="username" type="email" matInput formControlName="emailFormControl"
+             placeholder="Ex. pat@example.com">
+      @if (f['emailFormControl'].hasError('email') && !f['emailFormControl'].hasError('required')) {
+        <mat-error>Please enter a valid email address</mat-error>
+      }
+      @if (f['emailFormControl'].hasError('required')) {
+        <mat-error>Email is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input autocomplete="current-password" type="password" matInput formControlName="passwordFormControl">
+      @if (f['passwordFormControl'].hasError('password') && !f['passwordFormControl'].hasError('password')) {
+        <mat-error>Please enter a valid email address</mat-error>
+      }
+      @if (f['passwordFormControl'].hasError('required')) {
+        <mat-error>Password is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Log in</button>
+  </form>
+  <p>Don't have an account? <a mat-button routerLink="/register">Sign up</a></p>
+</mat-card>
+
+
